@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Intermediate Javascript JQuery Assignment (Fall 2014)</title>
+		<link rel="stylesheet" type="text/css" href="css/part1.css" />
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript">
+
+//tell the jquery function what to do when the page loads
+$(function() {
+
+	/****** SET UP THE ALIENS AT RANDOM POSITIONS******/
+
+	//generate some random alien positions
+	/*
+	 * the x position for each alien will be a random number between 0 and the container width
+	 * the y position for each alien will be a random number between 0 and 200px less than the container height
+	*/
+
+	//calculate random position for alien #1
+	var alien1X = Math.floor(Math.random() * $("div#container").width()); //generate a random number between 0 and the width of the container
+	var alien1Y = Math.floor(Math.random() * ($("div#container").height() - 200)); //generate a random number between 0 and 200px less than the height of the container
+	//set alien #1's position to this random x and y coordinate
+	$("#alien1").css("left", alien1X); //change the alien's left css property
+	$("#alien1").css("top", alien1Y); //change the alien's top css property
+
+	//calculate random position for alien #2
+	var alien2X = Math.floor(Math.random() * $("div#container").width()); //generate a random number between 0 and the width of the container
+	var alien2Y = Math.floor(Math.random() * ($("div#container").height() - 200)); //generate a random number between 0 and 200px less than the height of the container
+	//set alien #2's position to this random x and y coordinate
+	$("#alien2").css("left", alien2X); //change the alien's left css property
+	$("#alien2").css("top", alien2Y); //change the alien's top css property
+
+	//calculate random position for alien #3
+	var alien3X = Math.floor(Math.random() * $("div#container").width()); //generate a random number between 0 and the width of the container
+	var alien3Y = Math.floor(Math.random() * ($("div#container").height() - 200)); //generate a random number between 0 and 200px less than the height of the container
+	//set alien #3's position to this random x and y coordinate
+	$("#alien3").css("left", alien3X); //change the alien's left css property
+	$("#alien3").css("top", alien3Y); //change the alien's top css property
+
+	//calculate random position for alien #4
+	var alien4X = Math.floor(Math.random() * $("div#container").width()); //generate a random number between 0 and the width of the container
+	var alien4Y = Math.floor(Math.random() * ($("div#container").height() - 200)); //generate a random number between 0 and 200px less than the height of the container
+	//set alien #4's position to this random x and y coordinate
+	$("#alien4").css("left", alien4X); //change the alien's left css property
+	$("#alien4").css("top", alien4Y); //change the alien's top css property
+
+	//calculate random position for alien #5
+	var alien5X = Math.floor(Math.random() * $("div#container").width()); //generate a random number between 0 and the width of the container
+	var alien5Y = Math.floor(Math.random() * ($("div#container").height() - 200)); //generate a random number between 0 and 200px less than the height of the container
+	//set alien #5's position to this random x and y coordinate
+	$("#alien5").css("left", alien5X); //change the alien's left css property
+	$("#alien5").css("top", alien5Y); //change the alien's top css property
+
+
+	/****** SET UP THE SHOOTING INTERACTION ******/
+
+	//when a user clicks anywhere in the window, do something...
+	$(window).click(function(e) {
+
+		//show the bullet, in case it is invisible before
+		$("#bullet").show();
+
+		//determine where the cursor was clicked, and offset it by an amount that tells us where we want the bullet to end up
+		//we want the bullet to end up at an absolute position within the container
+		var targetX = e.pageX - $("div#container").offset().left - ($("#bullet").width() / 2);
+		var targetY = e.pageY - $("div#container").offset().top - ($("#bullet").height() / 2);
+
+		//determine where the center of the spaceship is positioned
+		var originX = $("#spaceship").position().left + ($("#spaceship").width() / 2);
+		var originY = $("#spaceship").position().top + ($("#spaceship").height() / 2);
+
+		//position the bullet at the same position as the spaceship
+		$("#bullet").css("left", originX);
+		$("#bullet").css("top", originY);
+
+		//do the bullet animation
+		/*
+			*set the left and top positions to match our target position
+			*set the duration to 200ms
+			*set the easing to be linear
+			*set the function that is run when the animation is complete to check for collisions
+		*/			
+		$("#bullet").animate({
+				//the following are CSS properties that define how we want the animation to end
+				"left": targetX,	//end up with the left position of the bullet at the target we calculated
+				"top": targetY		//end up with the top position of the bullet at the target we calculated
+			}, 
+			200, 			//the duration... how long the animation will take
+			"linear", 		//the type of easing... linear means no acceleration
+			function() {
+				//this function will be run once the animation is complete
+
+				//determine the ending position of the bullet
+				var bulletX = $("#bullet").position().left + ($("#bullet").width() / 2); //the center x position of the bullet
+				var bulletY = $("#bullet").position().top + ($("#bullet").height() / 2); //the center x position of the bullet
+
+				//check for collision with alien #1
+				var minX = $("#alien1").position().left; //the left edge of the alien
+				var maxX = minX + $("#alien1").height(); //the right edge of the alien
+				var minY = $("#alien1").position().top; //the top oedge of the alien
+				var maxY = minX + $("#alien1").height(); //the bottom edge of the alien
+				//check whether the bullet is somewhere inside the area where the alien sits
+				if (bulletX >= minX && bulletX <= maxX && bulletY >= minY && bulletX <= maxY) {
+					//we have a hit!  hide the alien
+					$("#alien1").hide();
+				}
+
+				//check for collision with alien #2... 
+				//basically same code as for alien #1
+				minX = $("#alien2").position().left; //the left edge of the alien
+				maxX = minX + $("#alien2").height(); //the right edge of the alien
+				minY = $("#alien2").position().top; //the top oedge of the alien
+				maxY = minX + $("#alien2").height(); //the bottom edge of the alien
+				//check whether the bullet is somewhere inside the area where the alien sits
+				if (bulletX >= minX && bulletX <= maxX && bulletY >= minY && bulletX <= maxY) {
+					//we have a hit!  hide the alien
+					$("#alien2").hide();
+				}
+
+				//check for collision with alien #3... 
+				//basically same code as for alien #2
+				minX = $("#alien3").position().left; //the left edge of the alien
+				maxX = minX + $("#alien3").height(); //the right edge of the alien
+				minY = $("#alien3").position().top; //the top oedge of the alien
+				maxY = minX + $("#alien3").height(); //the bottom edge of the alien
+				//check whether the bullet is somewhere inside the area where the alien sits
+				if (bulletX >= minX && bulletX <= maxX && bulletY >= minY && bulletX <= maxY) {
+					//we have a hit!  hide the alien
+					$("#alien3").hide();
+				}
+
+				//check for collision with alien #4... basically same code as for alien #2
+				minX = $("#alien4").position().left; //the left edge of the alien
+				maxX = minX + $("#alien4").height(); //the right edge of the alien
+				minY = $("#alien4").position().top; //the top oedge of the alien
+				maxY = minX + $("#alien4").height(); //the bottom edge of the alien
+				//check whether the bullet is somewhere inside the area where the alien sits
+				if (bulletX >= minX && bulletX <= maxX && bulletY >= minY && bulletX <= maxY) {
+					//we have a hit!  hide the alien
+					$("#alien4").hide();
+				}
+
+				//check for collision with alien #5... basically same code as for alien #2
+				minX = $("#alien5").position().left; //the left edge of the alien
+				maxX = minX + $("#alien5").height(); //the right edge of the alien
+				minY = $("#alien5").position().top; //the top oedge of the alien
+				maxY = minX + $("#alien5").height(); //the bottom edge of the alien
+				if (bulletX >= minX && bulletX <= maxX && bulletY >= minY && bulletX <= maxY) {
+					//we have a hit!  hide the alien
+					$("#alien5").hide();
+				}
+
+				//regardless of whether we have a hit or not, hide the bullet
+				$("#bullet").hide();
+
+		}); //end of the animation settings
+
+	}); //end of click event handler
+
+});	//end of function that is run once page loads
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<!-- SPACESHIP -->
+			<img id="spaceship" src="images/spaceship.png" />
+
+			<!-- ALIENS -->
+			<img id="alien1" class="alien" src="images/alien.png" />
+			<img id="alien2" class="alien" src="images/alien.png" />
+			<img id="alien3" class="alien" src="images/alien.png" />
+			<img id="alien4" class="alien" src="images/alien.png" />
+			<img id="alien5" class="alien" src="images/alien.png" />
+
+			<!-- BULLET -->
+			<img id="bullet" src="images/bullet.png" />
+
+		</div>
+	</body>
+</html>

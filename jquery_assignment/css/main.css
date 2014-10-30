@@ -1,0 +1,63 @@
+html, body, header,head, section, footer, h1,h2,h3,h4,h5{
+	padding: 0;
+	margin: 0;
+}
+div.clear{
+	clear: both;
+}
+
+#container{
+	width: 100%;
+	height: 100%;
+	/*background-color: blue;*/
+}
+
+header{
+	text-align: center;
+	background-color: yellow;
+	margin-bottom: 5px;
+}
+
+#spaceArea{
+	width: 80%;
+	height: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	/*background-color: black;*/
+	/*position: relative;*/
+	/*background-color: black;*/
+	border: 2px solid black;
+}
+.alien{
+	/*display: block;
+	position: relative;
+*/
+
+}
+#alien1{
+	margin-left: 200px;
+}
+#alien2{
+	margin-left: 300px;
+}
+#alien3{
+	margin-left: 70px;
+}
+#alien4{
+	margin-left: 150px;
+}
+#alien5{
+	margin-left: 130px;
+}
+#alien6{
+	margin-left: 110px;
+}
+#alien7{
+	margin-left: 200px;
+}
+
+#spaceship{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+}

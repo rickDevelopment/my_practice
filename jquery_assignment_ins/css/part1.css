@@ -1,0 +1,29 @@
+/* simple reset */
+html, body {
+	margin: 0;
+	padding: 0;
+	cursor: crosshair;
+}
+
+div#container {
+	position: relative; /* so we can position the spaceship and aliens absolutely within this container */
+	background-color: black;
+	width: 960px;
+	height: 640px;
+	margin: 20px auto; /* centered */
+}
+
+img#spaceship {
+	position: absolute; /* so we can absolutely position it within the container */
+	bottom: 10px;
+	left: 455px; /* centered: set to half the width of the container (480) minus half the width of the spaceship image (25) */
+}
+
+img.alien {
+	position: absolute; /* so we can absolutely position it within the container */
+}
+
+img#bullet {
+	position: absolute; /* so we can absolutely position it within the container */
+	display: none; /* invisible by default */
+}
