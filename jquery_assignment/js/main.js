@@ -1,5 +1,7 @@
+function findSpaceship(){
 document.getElementById("spaceship")
-console.log("print screen")
-console.log(
+alert("print screen")
+alert(
 	document.getElementById("spaceship")
-	)
+	)	
+}

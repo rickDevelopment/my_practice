@@ -61,3 +61,14 @@ header{
 	margin-right: auto;
 	margin-top: auto;
 }
+
+
+#spaceship {
+margin-left: auto;
+margin-right: auto;
+/* margin-top: auto; */
+bottom: -15px;
+position: relative;
+display: block;
+}
+/* if its not where we want change position to absolute and remove px from btotom so its just bottom:2;
