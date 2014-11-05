@@ -1,7 +1,5 @@
-function findSpaceship(){
-document.getElementById("spaceship")
-alert("print screen")
-alert(
-	document.getElementById("spaceship")
-	)	
-}
+$(function(){
+	$('.alien').click(function(){
+		$(this).hide();
+	});
+});
