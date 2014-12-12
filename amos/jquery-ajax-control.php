@@ -1,6 +1,6 @@
 <?php
 
-	include ("../../inc/config.inc.php");
+	include ("config.inc.php");
 
 	// CLIENT INFORMATION
 	$fname        = htmlspecialchars(trim($_POST['fname']));
