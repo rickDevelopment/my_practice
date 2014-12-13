@@ -13,7 +13,7 @@
 		<div id="success-output" class="prettyprint"></div>
 	</div>
 	<div class="alert alert-error hide">
-		<p>Oh shit! Error below:</p>
+		<p>Error below:</p>
 		<div id="error-output" class="prettyprint"></div>
 	</div>
 </form>
@@ -21,7 +21,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-$("#jquery-submit-ajax").submit(function(e) {
+$(".form-horizontal").submit(function(e) {
 	$.ajax({
 		type: "POST",
 		url: "jquery-ajax-control.php",

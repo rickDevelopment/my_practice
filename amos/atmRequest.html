@@ -106,39 +106,69 @@
 
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+      <label for="atmEmail" class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="atmEmail" placeholder="Email" required>
+        <input type="text" class="form-control" id="atmEmail" placeholder="Email Address" required name="email">
       </div>
     </div>
     <div class="form-group">
-      <label for="atmName" class="col-sm-2 control-label">Busienss Name</label>
+      <label for="atmBusinessName" class="col-sm-2 control-label">Business Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="atmName" placeholder="Name" required>
+        <input type="text" class="form-control" id="atmBusinessName" placeholder="Business Name" required name="businessName">
       </div>
     </div>
     <div class="form-group">
-      <label for="atmAddress" class="col-sm-2 control-label">Address</label>
+      <label for="atmFirstName" class="col-sm-2 control-label">First Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="atmAddress" placeholder="Address" >
+        <input type="text" class="form-control" id="atmFirstName" placeholder="First Name" required name="firstName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="atmLastName" class="col-sm-2 control-label">Last Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="atmLastName" placeholder="Last Name" required name="lastName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="atmAddress1" class="col-sm-2 control-label">Address</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="atmAddress" placeholder="Address" name="address1" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="atmAddress2" class="col-sm-2 control-label">Address 2</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="atmAddress" placeholder=" (apt no./dept.)" name="address2" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="atmCity" class="col-sm-2 control-label">City</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="atmZip" placeholder="City" name="city">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="atmState" class="col-sm-2 control-label">State</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="atmState" placeholder="State" name="state">
       </div>
     </div>
     <div class="form-group">
       <label for="atmZip" class="col-sm-2 control-label">Zip</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="atmZip" placeholder="Zip code">
+        <input type="text" class="form-control" id="atmZip" placeholder="Zip code" name="zip">
       </div>
     </div>
     <div class="form-group">
       <label for="atmPhone" class="col-sm-2 control-label">Phone</label>
       <div class="col-sm-10">
-        <input type="tel" class="form-control" id="atmPhone" placeholder="Phone#" required>
+        <input type="tel" class="form-control" id="atmPhone" placeholder="Phone#" required name="phone">
       </div>
     </div>
     <div class="form-group">
       <label for="atmDescription" class="col-sm-2 control-label">Description</label>
       <div class="col-sm-10">
-        <textarea class="form-control" rows="3" placeholder="Enter breif description for your request..."></textarea>
+        <textarea class="form-control" rows="3" placeholder="Enter breif description for your request..." name="description"></textarea>
       </div>
     </div>
 
@@ -168,11 +198,60 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="./js/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <!--   </div> -->
   <!--=============================END CONTAINER=================================================-->
+
+  <div class="alert alert-success hide">
+    <p>Form successfully submitted! The data sent is below:</p>
+    <div id="success-output" class="prettyprint"></div>
+  </div>
+  <div class="alert alert-error hide">
+    <p>Error below:</p>
+    <div id="error-output" class="prettyprint"></div>
+  </div>
+</form>
+<!-- === BEGIN form to database javascript === -->
+<script>
+$(document).ready(function(){
+$(".form-horizontal").submit(function(e) {
+
+  console.log("e",$(e))
+  console.log("e.target",$(e.target).serialize())
+     $.ajax({
+       type: "POST",
+       url: "ajax.php",
+       data: $(e.target).serialize(),
+      dataType: "json",
+      beforeSend:function(jqXHR,data){
+        // $('.alert-error,.alert-success').hide();
+        // console.log("data",data);
+         console.log("before send")
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        // $('.alert-error').fadeIn();
+        // $('#error-output').html(errorThrown);
+         console.log("error") 
+         console.log("error:",errorThrown)
+         console.log(textStatus,"textsa")
+         console.log("jqXHR",jqXHR)
+      },
+      success: function(data){
+         // $('.alert-success').fadeIn();
+         // $('#success-output').html(data);
+         console.log("success")
+      }
+    });
+    return false;
+  });
+});
+</script>
+
+<!-- === END form to database javascript === -->
+
+
 </body>
 </html>
 
