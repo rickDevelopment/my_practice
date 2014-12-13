@@ -87,12 +87,13 @@
 <!-- 16:9 aspect ratio -->
 
 <div class="container">
+  <form class="form-horizontal" role="form">
 
   <div class="form-group"><!--Radio Button to select service-->
     <div class="col-sm-offset-2 col-sm-10">
       <div class="radio"><h3>Select Service</h3>
         <label class="radio-inline">
-        <input type="radio" name="atmServiceRadioOptions" id="atmPurchaseRadio" value="option1"> Purchase ATM
+          <input type="radio" name="atmServiceRadioOptions" id="atmPurchaseRadio" value="option1"> Purchase ATM
         </label>
         <label class="radio-inline">
           <input type="radio" name="atmServiceRadioOptions" id="atmPlaceRadio" value="option2"> Let US Place ATM
@@ -104,7 +105,7 @@
     </div>
   </div>
 
-  <form class="form-horizontal" role="form">
+
     <div class="form-group">
       <label for="atmEmail" class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
@@ -216,36 +217,36 @@
 <!-- === BEGIN form to database javascript === -->
 <script>
 $(document).ready(function(){
-$(".form-horizontal").submit(function(e) {
+  $(".form-horizontal").submit(function(e) {
 
-  console.log("e",$(e))
-  console.log("e.target",$(e.target).serialize())
-     $.ajax({
-       type: "POST",
-       url: "ajax.php",
-       data: $(e.target).serialize(),
-      dataType: "json",
-      beforeSend:function(jqXHR,data){
-        // $('.alert-error,.alert-success').hide();
-        // console.log("data",data);
-         console.log("before send")
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-        // $('.alert-error').fadeIn();
-        // $('#error-output').html(errorThrown);
-         console.log("error") 
-         console.log("error:",errorThrown)
-         console.log(textStatus,"textsa")
-         console.log("jqXHR",jqXHR)
-      },
-      success: function(data){
-         // $('.alert-success').fadeIn();
-         // $('#success-output').html(data);
-         console.log("success")
-      }
+    console.log("e",$(e))
+    console.log("e.target",$(e.target).serialize())
+       $.ajax({
+         type: "POST",
+         url: "ajax.php",
+         data: $(e.target).serialize(),
+        dataType: "json",
+        beforeSend:function(jqXHR,data){
+          // $('.alert-error,.alert-success').hide();
+          // console.log("data",data);
+           console.log("before send")
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+           //$('.alert-error').fadeIn();
+           //$('#error-output').html(errorThrown);
+            console.log("error") -
+            console.log("error:",errorThrown)
+            console.log(textStatus,"texts")
+            console.log("jqXHR",jqXHR)
+        },
+        success: function(data){
+           // $('.alert-success').fadeIn();
+           // $('#success-output').html(data);
+           console.log("success")
+        }
+      });
+      return false;
     });
-    return false;
-  });
 });
 </script>
 

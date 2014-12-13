@@ -108,19 +108,37 @@
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="xbmcEmail" placeholder="Email" required>
+        <input type="email" class="form-control" id="xbmcEmail" placeholder="Email" required name="email">
       </div>
     </div>
     <div class="form-group">
       <label for="xbmcName" class="col-sm-2 control-label"> Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="xbmcName" placeholder="Name" required>
+        <input type="text" class="form-control" id="xbmcName" placeholder="Name" required name="firstName">
       </div>
     </div>
-    <div class="form-group">
-      <label for="xbmcAddress" class="col-sm-2 control-label">Address</label>
+        <div class="form-group">
+      <label for="itServiceAddress" class="col-sm-2 control-label">Address</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="xbmcAddress" placeholder="Address" >
+        <input type="text" class="form-control" id="itServiceAddress" placeholder="Address" name="address1">
+      </div>
+    </div>
+   <div class="form-group">
+      <label for="itServiceAddress" class="col-sm-2 control-label">Address</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="itServiceAddress" placeholder="apartment no or suite" name="address2">
+      </div>
+    </div>
+        <div class="form-group">
+      <label for="itServiceAddress" class="col-sm-2 control-label">City</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="itServiceCity" placeholder="city" name="city">
+      </div>
+    </div>
+      <div class="form-group">
+      <label for="itServiceAddress" class="col-sm-2 control-label">State</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="itServiceState" placeholder="state" name="state">
       </div>
     </div>
     <div class="form-group">
@@ -172,6 +190,42 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <!--   </div> -->
+<!-- === BEGIN form to database javascript === -->
+<script>
+$(document).ready(function(){
+  $(".form-horizontal").submit(function(e) {
+
+       $.ajax({
+         type: "POST",
+         url: "ajax.php",
+         data: $(e.target).serialize(),
+        dataType: "json",
+        beforeSend:function(jqXHR,data){
+          // $('.alert-error,.alert-success').hide();
+          // console.log("data",data);
+           console.log("before send")
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+           //$('.alert-error').fadeIn();
+           //$('#error-output').html(errorThrown);
+            console.log("error") -
+            console.log("error:",errorThrown)
+            console.log(textStatus,"texts")
+            console.log("jqXHR",jqXHR)
+        },
+        success: function(data){
+           // $('.alert-success').fadeIn();
+           // $('#success-output').html(data);
+           console.log("success")
+        }
+      });
+      return false;
+    });
+});
+</script>
+
+<!-- === END form to database javascript === -->
+
   <!--=============================END CONTAINER=================================================-->
 </body>
 </html>
