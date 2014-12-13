@@ -205,7 +205,8 @@
 <!--   </div> -->
   <!--=============================END CONTAINER=================================================-->
 
-  <div class="alert alert-success hide">
+     <!-- BEGIN form error/success message -->
+     <div class="alert alert-success hide">
     <p>Form successfully submitted! The data sent is below:</p>
     <div id="success-output" class="prettyprint"></div>
   </div>
@@ -213,14 +214,13 @@
     <p>Error below:</p>
     <div id="error-output" class="prettyprint"></div>
   </div>
+  <!-- END form error/success message -->
 </form>
 <!-- === BEGIN form to database javascript === -->
 <script>
 $(document).ready(function(){
   $(".form-horizontal").submit(function(e) {
 
-    console.log("e",$(e))
-    console.log("e.target",$(e.target).serialize())
        $.ajax({
          type: "POST",
          url: "ajax.php",
