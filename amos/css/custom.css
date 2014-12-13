@@ -31,16 +31,16 @@
 
 /* CUSTOMIZE CAROUSEL CAPTION
 -------------------------------------------------- */
-.carousel .carousel-inner .item .container {
+/*.carousel .carousel-inner .item .container {
 	position: absolute;
 	top: 0px;
 	right: 0px;
 	height: 100%;
 	width: 50%;
-}
+}*/
 .carousel .carousel-inner .item .container .carousel-caption {
 	padding-top: 0px;
-	top: 90px;
+	top: 200px;
 
 }
 
